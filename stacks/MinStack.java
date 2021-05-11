@@ -63,3 +63,57 @@ class MinStack {
  * int param_3 = obj.top();
  * int param_4 = obj.getMin();
  */
+
+
+// Accepted Solution 
+class MinStack {
+    Stack<Long> st;
+    long min;
+    /** initialize your data structure here. */
+    public MinStack() {
+        st = new Stack<Long>();
+        min = Integer.MAX_VALUE;
+    }
+    
+    public void push(int val) {
+        if(st.isEmpty()){
+            this.min=val;
+            st.push((long)val);
+        } else if(val<=this.min){
+            st.push((long)2*val-this.min);
+            this.min=val;
+        } else {
+            st.push((long)val);
+        }
+    }
+    
+    public void pop() {
+        long temp = st.pop();
+        if(temp<=this.min){
+            long res=this.min;
+            this.min=2*this.min-temp;
+            // return res;
+        }
+    }
+    
+    public int top() {
+        long temp=st.peek();
+        return (temp<=this.min)?(int)this.min:(int)temp;
+    }
+    
+    public int getMin() {
+        
+        return (int)this.min;
+    }
+}
+
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(val);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
+*/
