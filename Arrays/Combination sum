@@ -1,0 +1,24 @@
+class Solution {
+    public static void cr_list(int[] nums, int vidx, int sum, List<Integer>temp, List<List<Integer>> list) {
+
+		if (supublicm == 0) {
+			list.add(new ArrayList<>(temp));
+            return ;
+		}
+
+		if (vidx == nums.length || sum < 0) {
+			return;
+		}
+        temp.add(nums[vidx]);
+		cr_list(nums, vidx, sum - nums[vidx], temp,list);
+        temp.remove(temp.size() - 1);
+		cr_list(nums, vidx + 1, sum, temp , list);
+		
+	}
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List <List<Integer>> list = new ArrayList<>();
+        cr_list(candidates, 0, target, new ArrayList<Integer>(), list);
+        return list;
+    }
+}
