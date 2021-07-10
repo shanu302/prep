@@ -55,8 +55,6 @@ public:
             for(int j=1; j<n;j++){
                 if(matrix[i][j]==1){
                     matrix[i][j] = min(matrix[i][j-1],min(matrix[i-1][j],matrix[i-1][j-1])) + 1;
-                }else{
-                    matrix[i][j] = 0;
                 }
                 res+=matrix[i][j];
             }
